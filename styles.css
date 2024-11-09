@@ -7,29 +7,14 @@ body {
     color: #333;
 }
 
-/* Estilo de encabezado */
+/* Encabezado sin imagen */
 header {
-    background-image: url('https://raw.githubusercontent.com/carlos2285/datathon/main/medellin.jpg');
-    background-size: cover;
-    background-position: center;
+    background-color: #333;
     color: white;
-    padding: 3em;
+    padding: 2em;
     text-align: center;
-    position: relative;
-}
-header::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.4);
-    z-index: 1;
 }
 header h1 {
-    position: relative;
-    z-index: 2;
     font-size: 2.5em;
     font-weight: bold;
     margin: 0;
@@ -37,7 +22,7 @@ header h1 {
 
 /* Navegación */
 nav {
-    background-color: #333;
+    background-color: #444;
 }
 nav ul {
     list-style-type: none;
