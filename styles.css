@@ -1,0 +1,115 @@
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Estilo de encabezado */
+header {
+    background-image: url('https://raw.githubusercontent.com/carlos2285/datathon/main/medellin.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 3em;
+    text-align: center;
+    position: relative;
+}
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1;
+}
+header h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Navegación */
+nav {
+    background-color: #333;
+}
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+nav ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+nav ul li a {
+    color: white;
+    padding: 1em 1.5em;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+}
+nav ul li a:hover {
+    background-color: #555;
+    color: #fff;
+    border-radius: 5px;
+}
+
+/* Carrusel */
+.carousel {
+    position: relative;
+    max-width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-container img {
+    width: 100%;
+    flex: 0 0 100%;
+}
+button.prev, button.next {
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+button.prev {
+    left: 10px;
+}
+button.next {
+    right: 10px;
+}
+
+/* Sección de contenido */
+section {
+    padding: 3em 1.5em;
+    text-align: center;
+    background-color: #fff;
+    margin: 1.5em auto;
+    max-width: 800px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.section-title {
+    color: #333;
+    font-size: 2em;
+    margin-bottom: 0.5em;
+    font-weight: bold;
+}
