@@ -4,73 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciativa de Turismo Sostenible</title>
-    <link rel="stylesheet" href="https://js.arcgis.com/4.21/esri/themes/light/main.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-image: url('https://raw.githubusercontent.com/carlos2285/datathon/main/medellin.jpg');
-            background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 3em;
-            text-align: center;
-            position: relative;
-        }
-        header::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: 1;
-        }
-        header h1 {
-            position: relative;
-            z-index: 2;
-            font-size: 2em;
-        }
-        nav {
-            background-color: #444;
-        }
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            text-align: center;
-        }
-        nav ul li {
-            display: inline;
-        }
-        nav ul li a {
-            color: white;
-            padding: 1em;
-            text-decoration: none;
-            display: inline-block;
-        }
-        nav ul li a:hover {
-            background-color: #555;
-        }
-        section {
-            padding: 2em;
-            text-align: center;
-        }
-        .section-title {
-            color: #333;
-            text-align: center;
-        }
-        #mapDiv {
-            width: 100%;
-            height: 500px;
-            margin-top: 1em;
-        }
+        /* Aquí incluye el estilo CSS que deseas usar en todas las páginas */
     </style>
 </head>
 <body>
@@ -80,84 +15,16 @@
 
     <nav>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Sobre la Iniciativa</a></li>
-            <li><a href="#dashboard">Dashboard Medellín</a></li>
-            <li><a href="#mapas">Mapas de Interés</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="sobre.html">Sobre la Iniciativa</a></li>
+            <li><a href="dashboard.html">Dashboard Medellín</a></li>
+            <li><a href="mapas.html">Mapas de Interés</a></li>
         </ul>
     </nav>
 
-    <section id="home">
+    <section>
         <h2 class="section-title">Home</h2>
         <p>Bienvenidos a la iniciativa de Turismo Sostenible en Medellín. Aquí podrás explorar recursos, mapas y datos que promueven el turismo responsable en nuestra ciudad.</p>
     </section>
-
-    <section id="sobre">
-        <h2 class="section-title">Sobre la Iniciativa</h2>
-        <p>Esta iniciativa tiene como objetivo promover un turismo responsable y sostenible en Medellín, integrando recursos naturales, culturales y sociales en armonía con el medio ambiente.</p>
-    </section>
-
-    <section id="dashboard">
-        <h2 class="section-title">Dashboard Medellín</h2>
-        <p>Aquí puedes ver el dashboard con datos importantes sobre el turismo en Medellín.</p>
-        <iframe
-            src="URL_DEL_DASHBOARD_DE_QUICKSIGHT"
-            width="100%"
-            height="500"
-            frameborder="0"
-            allowfullscreen>
-        </iframe>
-    </section>
-
-    <section id="mapas">
-        <h2 class="section-title">Mapas de Interés</h2>
-        <p>Explora los mapas interactivos que destacan las áreas de interés en Medellín.</p>
-        <!-- Contenedor para el mapa de ArcGIS -->
-        <div id="mapDiv"></div>
-    </section>
-
-    <!-- ArcGIS API para el mapa -->
-    <script src="https://js.arcgis.com/4.21/"></script>
-    <script>
-      require([
-        "esri/Map",
-        "esri/views/MapView",
-        "esri/layers/MapImageLayer",
-        "esri/geometry/Extent"
-      ], function(Map, MapView, MapImageLayer, Extent) {
-
-        // Define la extensión de Medellín
-        const medellinExtent = new Extent({
-          xmin: -75.6336,
-          ymin: 6.1759,
-          xmax: -75.5161,
-          ymax: 6.3609,
-          spatialReference: { wkid: 4326 }
-        });
-
-        // Crea el MapImageLayer con el filtro para Living Atlas
-        var livingAtlasLayer = new MapImageLayer({
-          url: "https://ags.esri.co/arcgis/rest/services/LivingAtlas/MapServer",
-        });
-
-        // Configura el mapa
-        var map = new Map({
-          basemap: "topo-vector",
-          layers: [livingAtlasLayer]
-        });
-
-        // Configura la vista centrada en Medellín
-        var view = new MapView({
-          container: "mapDiv",
-          map: map,
-          extent: medellinExtent,
-          zoom: 12
-        });
-
-        view.when(() => {
-          console.log("Mapa cargado y filtrado para Medellín");
-        });
-      });
-    </script>
 </body>
 </html>
