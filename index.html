@@ -42,6 +42,52 @@
         <p>Bienvenidos a la Iniciativa de Turismo Sostenible en Medellín. Este proyecto busca promover el turismo responsable en la ciudad, respetando el medio ambiente y fortaleciendo el patrimonio cultural y social de Medellín.</p>
     </section>
 
+    <!-- Contenedor del Chat -->
+    <div class="chat-container">
+        <div id="chat-window"></div>
+        <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <!-- Script para el funcionamiento del chat -->
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const chatWindow = document.getElementById("chat-window");
+
+            // Muestra el mensaje del usuario en el chat
+            const userMessage = document.createElement("div");
+            userMessage.textContent = "Tú: " + userInput;
+            chatWindow.appendChild(userMessage);
+
+            // Limpiar el campo de entrada
+            document.getElementById("user-input").value = "";
+
+            try {
+                // Realiza una llamada POST a tu API Gateway
+                const response = await fetch("https://your-api-gateway-url", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ message: userInput })
+                });
+
+                const data = await response.json();
+
+                // Muestra la respuesta de Bedrock en el chat
+                const botMessage = document.createElement("div");
+                botMessage.textContent = "Bot: " + data.reply;
+                chatWindow.appendChild(botMessage);
+
+                // Desplaza el chat hacia abajo para ver el nuevo mensaje
+                chatWindow.scrollTop = chatWindow.scrollHeight;
+            } catch (error) {
+                console.error("Error al enviar mensaje:", error);
+            }
+        }
+    </script>
+
     <script src="script.js"></script>
 </body>
 </html>
