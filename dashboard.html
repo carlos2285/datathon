@@ -29,14 +29,14 @@
 
         <!-- Contenedor de pestañas para distintos dashboards -->
         <div class="tab">
-            <button class="tablinks" onclick="openDashboard(event, 'Dashboard1')">Dashboard 1</button>
+            <button class="tablinks active" onclick="openDashboard(event, 'Dashboard1')">Dashboard 1</button>
             <button class="tablinks" onclick="openDashboard(event, 'Dashboard2')">Dashboard 2</button>
             <button class="tablinks" onclick="openDashboard(event, 'Dashboard3')">Dashboard 3</button>
         </div>
 
         <!-- Contenedores para cada dashboard -->
-        <div id="Dashboard1" class="tabcontent">
-            <iframe width="100%" height="600" src="https://quicksight.aws.amazon.com/embed-dashboard-url-1" frameborder="0" allowfullscreen></iframe>
+        <div id="Dashboard1" class="tabcontent" style="display: block;">
+            <iframe width="100%" height="600" src="https://us-west-2.quicksight.aws.amazon.com/sn/embed/share/accounts/461809186092/dashboards/382e9d37-7f09-4b7b-a8a1-1d049ca50415?directory_alias=SalArg" frameborder="0" allowfullscreen></iframe>
         </div>
         <div id="Dashboard2" class="tabcontent">
             <iframe width="100%" height="600" src="https://quicksight.aws.amazon.com/embed-dashboard-url-2" frameborder="0" allowfullscreen></iframe>
@@ -61,6 +61,11 @@
             document.getElementById(dashboardName).style.display = "block";
             evt.currentTarget.className += " active";
         }
+
+        // Muestra el primer dashboard por defecto
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("Dashboard1").style.display = "block";
+        });
     </script>
 
     <style>
