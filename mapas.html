@@ -1,49 +1,87 @@
-<section>
-    <h2 class="section-title">Mapas de Interés</h2>
-    <p>Descubre los puntos de interés y las zonas destacadas para el turismo en Medellín a través de nuestro mapa interactivo. Esta herramienta te permitirá navegar por lugares emblemáticos y zonas que han sido desarrolladas y preservadas en línea con los principios del turismo sostenible.</p>
-    <div id="mapDiv"></div>
-</section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapas Relevantes</title>
+    <!-- Incluir ArcGIS API for JavaScript y CSS -->
+    <script src="https://js.arcgis.com/4.26/"></script>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.26/esri/themes/light/main.css">
+</head>
+<body>
+    <!-- Contenedor de pestañas -->
+    <div class="tab">
+        <button class="tablinks" onclick="openMap(event, 'Mapa1')">Mapa 1</button>
+        <button class="tablinks" onclick="openMap(event, 'Mapa2')">Mapa 2</button>
+        <button class="tablinks" onclick="openMap(event, 'Mapa3')">Mapa 3</button>
+    </div>
 
-<!-- ArcGIS API para el mapa -->
-<script src="https://js.arcgis.com/4.21/"></script>
-<script>
-  require([
-    "esri/Map",
-    "esri/views/MapView",
-    "esri/layers/MapImageLayer",
-    "esri/geometry/Extent"
-  ], function(Map, MapView, MapImageLayer, Extent) {
+    <!-- Contenedores para cada mapa -->
+    <div id="Mapa1" class="tabcontent">
+        <div id="mapView1" style="width:100%;height:500px;"></div>
+    </div>
 
-    // Define la extensión de Medellín
-    const medellinExtent = new Extent({
-      xmin: -75.6336,
-      ymin: 6.1759,
-      xmax: -75.5161,
-      ymax: 6.3609,
-      spatialReference: { wkid: 4326 }
-    });
+    <div id="Mapa2" class="tabcontent">
+        <div id="mapView2" style="width:100%;height:500px;"></div>
+    </div>
 
-    // Crea el MapImageLayer con el filtro para Living Atlas
-    var livingAtlasLayer = new MapImageLayer({
-      url: "https://ags.esri.co/arcgis/rest/services/LivingAtlas/MapServer",
-    });
+    <div id="Mapa3" class="tabcontent">
+        <div id="mapView3" style="width:100%;height:500px;"></div>
+    </div>
 
-    // Configura el mapa
-    var map = new Map({
-      basemap: "topo-vector",
-      layers: [livingAtlasLayer]
-    });
+    <script>
+        // Función para abrir y cerrar pestañas
+        function openMap(evt, mapName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(mapName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
-    // Configura la vista centrada en Medellín
-    var view = new MapView({
-      container: "mapDiv",
-      map: map,
-      extent: medellinExtent,
-      zoom: 12
-    });
+        // Inicialización de múltiples mapas
+        require(["esri/Map", "esri/views/MapView"], function(Map, MapView) {
+            // Mapa 1
+            var map1 = new Map({ basemap: "topo-vector" });
+            var view1 = new MapView({
+                container: "mapView1",
+                map: map1,
+                center: [-74.006, 40.7128],
+                zoom: 12
+            });
 
-    view.when(() => {
-      console.log("Mapa cargado y filtrado para Medellín");
-    });
-  });
-</script>
+            // Mapa 2
+            var map2 = new Map({ basemap: "streets-vector" });
+            var view2 = new MapView({
+                container: "mapView2",
+                map: map2,
+                center: [-118.2437, 34.0522],
+                zoom: 12
+            });
+
+            // Mapa 3
+            var map3 = new Map({ basemap: "satellite" });
+            var view3 = new MapView({
+                container: "mapView3",
+                map: map3,
+                center: [-0.1276, 51.5074],
+                zoom: 12
+            });
+        });
+    </script>
+
+    <style>
+        /* Estilo para las pestañas */
+        .tab { overflow: hidden; }
+        .tab button { background-color: #f1f1f1; float: left; cursor: pointer; padding: 10px; border: none; }
+        .tab button:hover { background-color: #ddd; }
+        .tabcontent { display: none; padding: 20px; }
+    </style>
+</body>
+</html>
