@@ -5,6 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciativa de Turismo Sostenible</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Estilos adicionales para el chat */
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
+        #chat-window {
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            background-color: #f9f9f9;
+            margin-bottom: 10px;
+        }
+
+        #user-input {
+            width: calc(100% - 60px);
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        button {
+            padding: 5px 10px;
+        }
+    </style>
 </head>
 <body>
     <!-- Encabezado con imagen de fondo -->
@@ -40,14 +69,14 @@
     <section>
         <h2 class="section-title">Home</h2>
         <p>Bienvenidos a la Iniciativa de Turismo Sostenible en Medellín. Este proyecto busca promover el turismo responsable en la ciudad, respetando el medio ambiente y fortaleciendo el patrimonio cultural y social de Medellín.</p>
+        
+        <!-- Contenedor del Chat -->
+        <div class="chat-container">
+            <div id="chat-window"></div>
+            <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
     </section>
-
-    <!-- Contenedor del Chat -->
-    <div class="chat-container">
-        <div id="chat-window"></div>
-        <input type="text" id="user-input" placeholder="Escribe tu mensaje aquí...">
-        <button onclick="sendMessage()">Enviar</button>
-    </div>
 
     <!-- Script para el funcionamiento del chat -->
     <script>
@@ -87,7 +116,5 @@
             }
         }
     </script>
-
-    <script src="script.js"></script>
 </body>
 </html>
