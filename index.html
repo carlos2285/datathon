@@ -94,7 +94,7 @@
 
             try {
                 // Realiza una llamada POST a tu API Gateway
-                const response = await fetch("https://fnk96sfa27.execute-api.us-west-2.amazonaws.com/dev/chat", {
+                const response = await fetch("https://3tvx8oxqra.execute-api.us-west-2.amazonaws.com/prod/chathon24", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -106,13 +106,16 @@
 
                 // Muestra la respuesta de Bedrock en el chat
                 const botMessage = document.createElement("div");
-                botMessage.textContent = "Bot: " + data.reply;
+                botMessage.textContent = "Bot: " + (data.reply || "Sin respuesta");
                 chatWindow.appendChild(botMessage);
 
                 // Desplaza el chat hacia abajo para ver el nuevo mensaje
                 chatWindow.scrollTop = chatWindow.scrollHeight;
             } catch (error) {
                 console.error("Error al enviar mensaje:", error);
+                const errorMessage = document.createElement("div");
+                errorMessage.textContent = "Error al conectar con el servidor.";
+                chatWindow.appendChild(errorMessage);
             }
         }
     </script>
