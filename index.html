@@ -81,8 +81,13 @@
     <!-- Script para el funcionamiento del chat -->
     <script>
         async function sendMessage() {
-            const userInput = document.getElementById("user-input").value;
+            const userInput = document.getElementById("user-input").value.trim();
             const chatWindow = document.getElementById("chat-window");
+
+            if (!userInput) {
+                alert("Por favor, ingresa un mensaje.");
+                return;
+            }
 
             // Muestra el mensaje del usuario en el chat
             const userMessage = document.createElement("div");
@@ -102,9 +107,13 @@
                     body: JSON.stringify({ message: userInput })
                 });
 
+                if (!response.ok) {
+                    throw new Error(`Error en la respuesta: ${response.status} ${response.statusText}`);
+                }
+
                 const data = await response.json();
 
-                // Muestra la respuesta de Bedrock en el chat
+                // Muestra la respuesta del bot en el chat
                 const botMessage = document.createElement("div");
                 botMessage.textContent = "Bot: " + (data.reply || "Sin respuesta");
                 chatWindow.appendChild(botMessage);
